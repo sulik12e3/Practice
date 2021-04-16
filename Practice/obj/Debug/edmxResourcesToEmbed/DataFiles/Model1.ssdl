@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DateVideoTapes">
+    <Key>
+      <PropertyRef Name="DatevideotapesID" />
+    </Key>
+    <Property Name="DatevideotapesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="termvideotapes" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="InformationTapes">
+    <Key>
+      <PropertyRef Name="InformationtapesID" />
+    </Key>
+    <Property Name="InformationtapesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Genre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="VideoTapes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameVideotapes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IDDateVideotapes" Type="int" />
+    <Property Name="IDindormationTapes" Type="int" />
+  </EntityType>
+  <Association Name="FK_VideoTapes_DateVideoTapes1">
+    <End Role="DateVideoTapes" Type="Self.DateVideoTapes" Multiplicity="0..1" />
+    <End Role="VideoTapes" Type="Self.VideoTapes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DateVideoTapes">
+        <PropertyRef Name="DatevideotapesID" />
+      </Principal>
+      <Dependent Role="VideoTapes">
+        <PropertyRef Name="IDDateVideotapes" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoTapes_InformationTapes1">
+    <End Role="InformationTapes" Type="Self.InformationTapes" Multiplicity="0..1" />
+    <End Role="VideoTapes" Type="Self.VideoTapes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InformationTapes">
+        <PropertyRef Name="InformationtapesID" />
+      </Principal>
+      <Dependent Role="VideoTapes">
+        <PropertyRef Name="IDindormationTapes" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ModelContainer">
+    <EntitySet Name="DateVideoTapes" EntityType="Self.DateVideoTapes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InformationTapes" EntityType="Self.InformationTapes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VideoTapes" EntityType="Self.VideoTapes" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_VideoTapes_DateVideoTapes1" Association="Self.FK_VideoTapes_DateVideoTapes1">
+      <End Role="DateVideoTapes" EntitySet="DateVideoTapes" />
+      <End Role="VideoTapes" EntitySet="VideoTapes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoTapes_InformationTapes1" Association="Self.FK_VideoTapes_InformationTapes1">
+      <End Role="InformationTapes" EntitySet="InformationTapes" />
+      <End Role="VideoTapes" EntitySet="VideoTapes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

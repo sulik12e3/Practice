@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Hire_videotapeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DateVideoTapes" EntityType="Model.DateVideoTapes" />
+    <EntitySet Name="InformationTapes" EntityType="Model.InformationTapes" />
+    <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
+    <EntitySet Name="VideoTapes" EntityType="Model.VideoTapes" />
+    <AssociationSet Name="FK_VideoTapes_DateVideoTapes1" Association="Model.FK_VideoTapes_DateVideoTapes1">
+      <End Role="DateVideoTapes" EntitySet="DateVideoTapes" />
+      <End Role="VideoTapes" EntitySet="VideoTapes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoTapes_InformationTapes1" Association="Model.FK_VideoTapes_InformationTapes1">
+      <End Role="InformationTapes" EntitySet="InformationTapes" />
+      <End Role="VideoTapes" EntitySet="VideoTapes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DateVideoTapes">
+    <Key>
+      <PropertyRef Name="DatevideotapesID" />
+    </Key>
+    <Property Name="DatevideotapesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="termvideotapes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="VideoTapes" Relationship="Model.FK_VideoTapes_DateVideoTapes1" FromRole="DateVideoTapes" ToRole="VideoTapes" />
+  </EntityType>
+  <EntityType Name="InformationTapes">
+    <Key>
+      <PropertyRef Name="InformationtapesID" />
+    </Key>
+    <Property Name="InformationtapesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="VideoTapes" Relationship="Model.FK_VideoTapes_InformationTapes1" FromRole="InformationTapes" ToRole="VideoTapes" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VideoTapes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameVideotapes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IDDateVideotapes" Type="Int32" />
+    <Property Name="IDindormationTapes" Type="Int32" />
+    <NavigationProperty Name="DateVideoTapes" Relationship="Model.FK_VideoTapes_DateVideoTapes1" FromRole="VideoTapes" ToRole="DateVideoTapes" />
+    <NavigationProperty Name="InformationTapes" Relationship="Model.FK_VideoTapes_InformationTapes1" FromRole="VideoTapes" ToRole="InformationTapes" />
+  </EntityType>
+  <Association Name="FK_VideoTapes_DateVideoTapes1">
+    <End Type="Model.DateVideoTapes" Role="DateVideoTapes" Multiplicity="0..1" />
+    <End Type="Model.VideoTapes" Role="VideoTapes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DateVideoTapes">
+        <PropertyRef Name="DatevideotapesID" />
+      </Principal>
+      <Dependent Role="VideoTapes">
+        <PropertyRef Name="IDDateVideotapes" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoTapes_InformationTapes1">
+    <End Type="Model.InformationTapes" Role="InformationTapes" Multiplicity="0..1" />
+    <End Type="Model.VideoTapes" Role="VideoTapes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InformationTapes">
+        <PropertyRef Name="InformationtapesID" />
+      </Principal>
+      <Dependent Role="VideoTapes">
+        <PropertyRef Name="IDindormationTapes" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
