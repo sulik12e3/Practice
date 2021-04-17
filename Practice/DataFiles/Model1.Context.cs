@@ -29,5 +29,6 @@ namespace Practice.DataFiles
         public virtual DbSet<InformationTapes> InformationTapes { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<VideoTapes> VideoTapes { get; set; }
+        public virtual DbSet<Заказ> Заказ { get; set; }
     }
 }

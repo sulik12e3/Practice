@@ -9,18 +9,27 @@
       Title="JustWatch" Loaded="Page_Loaded">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
         <StackPanel>
-            <DataGrid x:Name="DG" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid x:Name="DG2" AutoGenerateColumns="False" CanUserAddRows="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название кассеты" Binding="{Binding NameVideotapes}"/>
-                    <DataGridTextColumn Header="Начало проката" Binding="{Binding DateVideoTapes.termvideotapes}"/>
-                    <DataGridTextColumn Header="Общее количество" Binding="{Binding InformationTapes.QuantityTapes}"/>
-                    <DataGridTextColumn Header="В Наличии" Binding="{Binding InformationTapes.QuantityAviable}"/>
-                    <DataGridTextColumn Header="Жанр" Binding="{Binding InformationTapes.Genre}"/>
+                    <DataGridTextColumn Width="*" Header="Название кассеты" Binding="{Binding FIO}"/>
+                    <DataGridTextColumn Width="*"  Header="Начало проката" Binding="{Binding PhoneNumber}"/>
+                    <DataGridTextColumn Width="*"  Header="Код кассеты" Binding="{Binding Codetapes}"/>
+                    
 
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-       
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Добавить" Name="ADD" Margin="6" Click="ADD_Click"/>
+            <Button Content="Удалить" Name="Delete" Margin="6" Click="Delete_Click"/>
+            <Button Content="Редактировать" Name="Changebtn" Click="Changebtn_Click" Margin="6"/>
+        </StackPanel>
+ 
     </Grid>
 </Page>

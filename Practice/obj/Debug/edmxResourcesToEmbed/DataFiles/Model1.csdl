@@ -5,6 +5,7 @@
     <EntitySet Name="InformationTapes" EntityType="Model.InformationTapes" />
     <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagrams" />
     <EntitySet Name="VideoTapes" EntityType="Model.VideoTapes" />
+    <EntitySet Name="Заказ" EntityType="Model.Заказ" />
     <AssociationSet Name="FK_VideoTapes_DateVideoTapes1" Association="Model.FK_VideoTapes_DateVideoTapes1">
       <End Role="DateVideoTapes" EntitySet="DateVideoTapes" />
       <End Role="VideoTapes" EntitySet="VideoTapes" />
@@ -19,7 +20,7 @@
       <PropertyRef Name="DatevideotapesID" />
     </Key>
     <Property Name="DatevideotapesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="termvideotapes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="termvideotapes" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="VideoTapes" Relationship="Model.FK_VideoTapes_DateVideoTapes1" FromRole="DateVideoTapes" ToRole="VideoTapes" />
   </EntityType>
   <EntityType Name="InformationTapes">
@@ -27,7 +28,7 @@
       <PropertyRef Name="InformationtapesID" />
     </Key>
     <Property Name="InformationtapesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Genre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="VideoTapes" Relationship="Model.FK_VideoTapes_InformationTapes1" FromRole="InformationTapes" ToRole="VideoTapes" />
   </EntityType>
   <EntityType Name="sysdiagrams">
@@ -46,13 +47,22 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NameVideotapes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="IDDateVideotapes" Type="Int32" />
-    <Property Name="IDindormationTapes" Type="Int32" />
+    <Property Name="IDDateVideotapes" Type="Int32" Nullable="false" />
+    <Property Name="IDindormationTapes" Type="Int32" Nullable="false" />
     <NavigationProperty Name="DateVideoTapes" Relationship="Model.FK_VideoTapes_DateVideoTapes1" FromRole="VideoTapes" ToRole="DateVideoTapes" />
     <NavigationProperty Name="InformationTapes" Relationship="Model.FK_VideoTapes_InformationTapes1" FromRole="VideoTapes" ToRole="InformationTapes" />
   </EntityType>
+  <EntityType Name="Заказ">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Codetapes" Type="Int32" Nullable="false" />
+  </EntityType>
   <Association Name="FK_VideoTapes_DateVideoTapes1">
-    <End Type="Model.DateVideoTapes" Role="DateVideoTapes" Multiplicity="0..1" />
+    <End Type="Model.DateVideoTapes" Role="DateVideoTapes" Multiplicity="1" />
     <End Type="Model.VideoTapes" Role="VideoTapes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DateVideoTapes">
@@ -64,7 +74,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_VideoTapes_InformationTapes1">
-    <End Type="Model.InformationTapes" Role="InformationTapes" Multiplicity="0..1" />
+    <End Type="Model.InformationTapes" Role="InformationTapes" Multiplicity="1" />
     <End Type="Model.VideoTapes" Role="VideoTapes" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="InformationTapes">

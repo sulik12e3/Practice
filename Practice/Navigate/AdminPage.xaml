@@ -17,11 +17,10 @@
             <StackPanel>
                 <DataGrid x:Name="DG1" AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Название кассеты" Binding="{Binding NameVideotapes}"/>
-                    <DataGridTextColumn Header="Начало проката" Binding="{Binding DateVideoTapes.termvideotapes}"/>
-                    <DataGridTextColumn Header="Общее количество" Binding="{Binding InformationTapes.QuantityTapes}"/>
-                        <DataGridTextColumn Header="В Наличии" Binding="{Binding InformationTapes.QuantityAviable}"/>
-                        <DataGridTextColumn Header="Жанр" Binding="{Binding InformationTapes.Genre}"/>
+                    <DataGridTextColumn Width="*" Header="Код записи" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Width="*" Header="Название кассеты" Binding="{Binding NameVideotapes}"/>
+                    <DataGridTextColumn Width="*" Header="Начало проката" Binding="{Binding DateVideoTapes.termvideotapes}"/>
+                    <DataGridTextColumn Width="*" Header="Жанр" Binding="{Binding InformationTapes.Genre}"/>
 
                     </DataGrid.Columns>
                 </DataGrid>
@@ -29,9 +28,8 @@
            
             </StackPanel  >
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-            <Button Name="addbtn" Content="Добавить" Click="addbtn_Click" Margin="6"/>
-            <Button Name="Deletedbt" Content="Удалить" Click="Deletedbt_Click" Margin="6"/>
-            <Button Name="changebtn" Content="Редактировать" Click="changebtn_Click" Margin="6"/>
+          
+          
         </StackPanel>
 
 

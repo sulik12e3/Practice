@@ -1,6 +1,5 @@
 ﻿using Practice.DataFiles;
 using Practice.Resources;
-using Practice.Resources.Usebtn;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,30 +38,11 @@ namespace Practice.Navigate
             DG1.ItemsSource = Connectdb.dbobj.VideoTapes.ToList();
         }
 
-        private void addbtn_Click(object sender, RoutedEventArgs e)
-        {
-            Add s = new Add();
-            s.Show();
-            Update1();
-        }
+     
 
-        private void Deletedbt_Click(object sender, RoutedEventArgs e)
-        {
+       
+     
 
-            var currentTapes = DG1.SelectedItem as VideoTapes;
-            if (currentTapes != null)
-            {
-                db1.VideoTapes.Remove(currentTapes);
-                db1.SaveChanges();
-                Update1();
-            }
-
-        }
-
-        private void changebtn_Click(object sender, RoutedEventArgs e)
-        {
-            Connectdb.dbobj.SaveChanges();
-           
-        }
+       
     }
 }

@@ -12,14 +12,11 @@ namespace Practice.DataFiles
     using System;
     using System.Collections.Generic;
     
-    public partial class VideoTapes
+    public partial class Заказ
     {
-        public int Id { get; set; }
-        public string NameVideotapes { get; set; }
-        public int IDDateVideotapes { get; set; }
-        public int IDindormationTapes { get; set; }
-    
-        public virtual DateVideoTapes DateVideoTapes { get; set; }
-        public virtual InformationTapes InformationTapes { get; set; }
+        public int ID { get; set; }
+        public string FIO { get; set; }
+        public string PhoneNumber { get; set; }
+        public int Codetapes { get; set; }
     }
 }

@@ -30,11 +30,32 @@ namespace Practice.Navigate
         Hire_videotapeEntities DB = new Hire_videotapeEntities();
         void Update()
         {
-            DG.ItemsSource = DB.VideoTapes.ToList();
+            DG2.ItemsSource = DB.Заказ.ToList();
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Update();
+            DG2.ItemsSource = Connectdb.dbobj.Заказ.ToList();
+        }
+
+        private void ADD_Click(object sender, RoutedEventArgs e)
+        {
+            Frames.Frmobj.Navigate(new addpage());
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var currentOrder = DG2.SelectedItem as Заказ;
+            if (currentOrder != null)
+            {
+                DB.Заказ.Remove(currentOrder);
+                DB.SaveChanges();
+                Update();
+            }
+        }
+
+        private void Changebtn_Click(object sender, RoutedEventArgs e)
+        {
+            Connectdb.dbobj.SaveChanges();
         }
     }
 }
